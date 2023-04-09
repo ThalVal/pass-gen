@@ -10,28 +10,22 @@ var num = "0123456789";
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-function generatePassword() {
-  return "";
-}
 
 function writePassword() {
-  var password = promptForLength();
-  var passwordChar = promptCharas();
+  var length = promptForLength();
+  var passchars = promptCharas();
   var passwordText = document.querySelector("#password");
-
-  passwordText.value = createPassword();
-
+  passwordText.value = createPassword(length, passchars);
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 
-
+//prompt for length
 function promptForLength() {
   let charLength = prompt("How many characters would you like in your password?\nBetween 8 and 24", "8");
-  if (charLength < 8  ||  Math.sign(charLength) === -1 ) {
+  if (charLength < 8) {
     alert("Your password must be at least 8 characters. Enter a number of characters between 8 and 24.");
     window.location.reload(true)
     throw new Error()
@@ -46,35 +40,32 @@ function promptForLength() {
     window.location.reload(true)
     throw new Error()
   }  
-}
-
-function checkLength() {
-  if ((charLength)) {
-    alert("Enter a number of characters between 8 and 24");
-    window.location.reload(true);
-    passwordArray.length = 0
-    throw new Error();
-  }
+  return charLength
 }
 
 //prompt functions
-  function promptCharas() {
-    let special = confirm("Would you like special characters in your password?");
-    if (special) {specialCharas.push; }
-    let lower = confirm("Would you like lowercase letters in your password?");
-    if (lower) {lowCase.push; }
-    let upper = confirm("Would you like uppercase letters in your password?");
-    if (upper) {upCase.push; }
-    let number = confirm("Would you like numbers in your password?");
-    if (number) {num.push; }
-        }
+function promptCharas() {
+  let special = confirm("Would you like special characters in your password?");
+  let passwordArray = ""
+  if (special) {passwordArray += specialCharas; }
+  let lower = confirm("Would you like lowercase letters in your password?");
+  if (lower) {passwordArray += lowCase; }
+  let upper = confirm("Would you like uppercase letters in your password?");
+  if (upper) {passwordArray += upCase; }
+  let number = confirm("Would you like numbers in your password?");
+  if (number) {passwordArray += num; }
+  
+  return passwordArray
+}
 
-  function createPassword() {
-    let password = "";
-    for (let i = 0; i < charLength; i++) {
-      let randomIndex = Math.floor(Math.random() * flatPasswordArray.length);
-      let randomChar = flatPasswordArray[randomIndex];
-      password += randomChar;
-          }
-          return password
-        }
+
+// ya like password ?        
+function createPassword(charLength, passchars) {
+  let password = "";
+  for (let i = 0; i < charLength; i++) {
+    let randomIndex = Math.floor(Math.random() * passchars.length);
+    let randomChar = passchars[randomIndex];
+    password += randomChar;
+  }
+  return password;
+}
