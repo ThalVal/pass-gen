@@ -14,6 +14,8 @@ N/A
 
 Create a secure password with a variety of characters. 
 
+https://github.com/ThalVal/pass-gen/blob/main/passgen.gif
+
 
 
 ## Credits
